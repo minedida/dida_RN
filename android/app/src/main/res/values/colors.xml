@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary_dark">#000000</color>
+    <color name="status_bar_color">#ffffff</color>
+    <color name="red">#ff0000</color>
+    <color name="blue">#607edf</color>
+    <color name="black_night">#212121</color>
+    <color name="black_black">#000</color>
+    <color name="pink">#fe7797</color>
+    <color name="black_gray">#272a34</color>
+    <color name="green">#04ce91</color>
+    <color name="gray">#7d7f85</color>
+    <color name="yellow">#f9bf13</color>
+    <color name="white">#f0f0f0</color>
+</resources>

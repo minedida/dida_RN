@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+  <head lang="en">
+    <meta charset="UTF-8">
+    <title>玩转公众号</title>
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+    <meta http-equiv="Content-Type" content="text/html">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+
+
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta name="author" content="玩转公众号">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+
+    <!--DEV-PATH-->
+    <link rel="stylesheet" href="./play.min.css">
+    <!--DEV-PATH-->
+
+  </head>
+  <body class="bg-star w-320">
+
+
+    <div class="swiper-container">
+      <div class="swiper-wrapper">
+
+        <div class="swiper-slide">
+          <div class="page page1">
+            <dl>
+              <dt class="text-center animated_0_5 fadeInDown delay_2_0">
+                <span class="part part-page1-title"></span>
+              </dt>
+              <dd class="text-right animated_0_5 bounceInRight"><span class="part part-page1-chat1"></span></dd>
+              <dd class="text-left animated_0_5 bounceInLeft delay_0_5"><span class="part part-page1-chat2"></span></dd>
+              <dd class="text-right animated_0_5 bounceInRight delay_1_0"><span class="part part-page1-chat3"></span></dd>
+              <dd class="text-left animated_0_5 bounceInLeft delay_1_5"><span class="part part-page1-chat4"></span></dd>
+            </dl>
+
+            <div class="controls text-center animated_1_2 animationArrow infinite delay_2_0 button-swipe-next">
+              <span class="part part-arrow-up"></span>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="swiper-slide">
+          <div id="page2" class="page2 page hide">
+
+            <dl>
+
+              <dt class="text-center animated_0_5 fadeInDown delay_2_6">
+                <span class="part part-page2-title"></span>
+              </dt>
+
+              <dd>
+                <div class="papers">
+                  <!-- <div class="paper4 paper fadeInUp animated_0_2 delay_2_4">
+                    <div class="block"></div>
+                  </div> -->
+                  <div class="paper3 paper fadeInUp animated_0_2 delay_2_2">
+                    <div class="block"></div>
+                  </div>
+                  <div class="paper2 paper fadeInUp animated_0_2 delay_2_0">
+                    <div class="block"></div>
+                  </div>
+                  <div class="paper1 paper fadeIn animated_0_5">
+                    <!--顶部区域-->
+                    <div class="block1 block slideInDown animated_0_5 delay_0_3"></div>
+                    <!--左边区域-->
+                    <div class="left">
+                      <div class="block2 block slideInLeft animated_0_5 delay_0_5"></div>
+                      <div class="block3 block slideInLeft animated_0_5 delay_0_7"></div>
+                      <div class="block4 block slideInLeft animated_0_5 delay_0_9"></div>
+                      <div class="block5 block slideInLeft animated_0_5 delay_1_1"></div>
+                    </div>
+
+                    <!--右边区域-->
+                    <div class="block6 block right slideInRight animated_0_5 delay_0_9"></div>
+                    <!--底下区域-->
+                    <div class="block7 block clear-fix slideInUp animated_0_5 delay_0_9"></div>
+                    <div class="block8 block slideInUp animated_0_5 delay_1_1"></div>
+                    <div class="block9 block slideInUp animated_0_5 delay_1_3"></div>
+                  </div>
+
+                </div>
+              </dd>
+            </dl>
+            <div id="controls-no-wechat" class="controls">
+              <a href="ticktick://private_api.action.focus_on_wechat" class="button-follow animated_0_5 fadeInUp delay_2_6">马上去关注公众号</a>
+              <a href="https://dida365.com/public/wechat/how-bind-qrcode-play.html" class="button-scan animated_0_5 fadeInUp delay_2_8">你也可以扫描二维码关注 <span class="part part-arrow-right"></span></a>
+            </div>
+
+            <div id="controls-wechat" class="controls">
+              <p class="animated_0_5 fadeInUp delay_2_6">更多精彩玩法，等待您发现</p>
+            </div>
+          </div>
+
+        </div>
+
+        <div></div>
+      </div>
+    </div>
+
+
+    <!--DEV-PATH-->
+    <script src="./play.min.js"></script>
+    <!--DEV-PATH-->
+
+    <script>
+
+      window.bindWechatSuccess = function () {
+        $('.page4 .step1').addClass('achieved');
+      }
+
+      window.fucosOnDidaSuccess = function () {
+        $('.page4 .step2').addClass('achieved');
+      }
+
+      $(function() {
+
+        var hrefParam = location.href && location.href.split('?')[1];
+        if (hrefParam) {
+          var paramArr = hrefParam.split('&');
+          paramArr.forEach(function(param) {
+            var paramParseArr = param.split('=');
+            if (paramParseArr[0] === 'focus_on_dida' && paramParseArr[1] && paramParseArr[1] !== 'false') {
+              fucosOnDidaSuccess();
+            } else if (paramParseArr[0] === 'bind_wechat' && paramParseArr[1] && paramParseArr[1] !== 'false') {
+              bindWechatSuccess();
+            }
+          })
+        }
+
+        var isWechat = !!navigator.userAgent.match(/MicroMessenger/i);
+        if(isWechat) {
+          $('#page2').find('#controls-no-wechat').remove();
+        } else {
+          $('#page2').find('#controls-wechat').remove();
+        }
+
+        var $slides = $(".swiper-slide");
+
+        var options = {
+          mode: 'vertical',
+          onSlideChangeEnd: function (swiper) {
+            swiper
+            var index = swiper.activeIndex;
+            $slides.eq(index).find(".page").removeClass("hide");
+            if(index === 1) {
+              $slides.eq(index).find('.page').css('overflow-x','hidden');
+            }
+          }
+        };
+
+        var smallHeight = function(){
+          //横屏
+          return $(window).height() <= 400;
+        };
+
+
+        if(smallHeight()) {
+          options = $.extend(options, {
+            noSwiping : true,
+            noSwipingClass : 'page'
+          });
+        }
+
+        var tickSwiper = new Swiper('.swiper-container', options);
+
+        if(smallHeight()) {
+          $slides.find('.page').swipeUp(function() {
+            if($(this).height() + $(this).scrollTop() >= this.scrollHeight && !$(this).hasClass('page4')) {
+              tickSwiper.swipeNext();
+            }
+          });
+
+          $slides.find('.page').swipeDown(function() {
+            if($(this).scrollTop() <= 0 && !$(this).hasClass('page1')) {
+              tickSwiper.swipePrev();
+            }
+          });
+        }
+
+
+        $('.button-swipe-next').click(function(e) {
+          e.preventDefault();
+          tickSwiper.swipeNext();
+        });
+        $('.btn-goto-focus').click(function(e) {
+          $('.page4').addClass('opened');
+          $('body').addClass('opened');
+          tickSwiper.params.noSwiping = true;
+          tickSwiper.params.noSwipingClass = 'page';
+        })
+      });
+
+
+    </script>
+
+  </body>
+</html>

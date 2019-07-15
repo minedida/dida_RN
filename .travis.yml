@@ -1,0 +1,46 @@
+language: android
+jdk: oraclejdk8
+sudo: required
+before_cache:
+  - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
+  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+cache:
+  yarn: true
+  directories:
+    - $HOME/.gradle/caches/
+    - $HOME/.gradle/wrapper/
+    - node_modules
+android:
+  components:
+    - platform-tools
+    - tools
+    - build-tools-28.0.3
+    - android-28
+    - extra-android-m2repository
+    - extra-android-support
+licenses:
+  - android-sdk-preview-license-.+
+  - android-sdk-license-.+
+  - google-gdk-license-.+
+before_install:
+  - nvm install 10
+  - node --version
+  - npm install yarn
+  - chmod +x ./android/gradlew
+install:
+  - yarn install
+script:
+  - yarn and-release
+after_script:
+branches:
+  only:
+  - master
+deploy:
+  provider: releases
+  skip_cleanup: true
+  api_key:
+    secure: oQZpA+l59G4G+NuRRTZPdfVxGnnMcR7ty9ThKejNCDY4QZinZYXJU4Hz54WhlRt0tzhdQTzOK9NEgo55efwcOiN5qqT+enM2TYH96wfa+rUeQqD3Nd04dgr3nsM4N02UYj0GiIbGCNgym5HRTpMwXNBVMDIwovhmRNBhbNwVqE+FuvXo2asb8jJXeEyxjs7YJEKpuniCpVYn+kVambqpDNblpkh5Jz6L1MXa3hWbFW/n03hxKehwwRGZHjHQslrL2pLo09zZf3DN/3FoB+ZX90JM2TQx8/TZ1SqIOclyFbjl7EVpv8xDB4DqKwCi9rAJto9kJZ/OqMQKO8AJgzZOR0iTKFY03ZipXkMz7MhcEgXkn0jYQv3VE2LnfSO4NYn3EvDC1kA9di9zNYl/rBV2Rwd6c7XBAkLDsKfH8W6TE0rO9lZ546nYZ+qFvxGO9wyGaQoR5P6gHJEOcSsjEfsWPdlSeyXJ66RvJ5T7oy1V3jDSDpg+MZeoTOnsKwUABii0++NQwIjy+4E/VBi2Ezl6z0Fhv6P6ptBOlZN2SyIlQmUcRpI98jcJUSzNWt0TYK4Kjgr22aU1buVd5HA+DjuQOOxfEgDgollAg7SsskbL5JJ6T+3f8Kpqlu7KqXKit9l9zafJg5qHCqnHYp4fm4Y0T7WN+S/VFurgUFONphGl6ls=
+  file: "$TRAVIS_BUILD_DIR/android/app/build/outputs/apk/release/app-release.apk"
+  on:
+    repo: dautent/dida_RN
+tags: false
