@@ -28,5 +28,6 @@ jobs:
       - name: Build apk
         run: yarn and-release
 
-      - name: Deploy Apk File To Github Release
-        run: yarn and-release
+      - name: Upload apk
+        run: yarn upload-apk
+
