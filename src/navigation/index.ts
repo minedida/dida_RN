@@ -1,6 +1,6 @@
 import {
   NavigationActions, NavigationContainerComponent, NavigationParams,
-  StackActions,
+  StackActions, DrawerActions,
 } from 'react-navigation';
 
 let navigationContainer: NavigationContainerComponent;
@@ -45,6 +45,16 @@ export function navigate(
     );
     lastNavigateTime = Date.now();
   }
+}
+
+export function openDrawer() {
+    navigationContainer.dispatch(DrawerActions.openDrawer());
+}
+export function closeDrawer() {
+    navigationContainer.dispatch(DrawerActions.closeDrawer());
+}
+export function toggleDrawer() {
+    navigationContainer.dispatch(DrawerActions.toggleDrawer());
 }
 
 export function push(routeName: string, params?: NavigationParams) {
@@ -102,4 +112,7 @@ export default {
   goBack,
   pop,
   replacePrevious,
+  openDrawer,
+  closeDrawer,
+  toggleDrawer,
 };

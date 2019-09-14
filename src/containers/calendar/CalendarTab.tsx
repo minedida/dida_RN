@@ -1,8 +1,7 @@
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import { NavigationBar } from "../../components/";
-// import {Agenda} from 'react-native-calendars';
-import { Agenda } from '../../libs/react-native-calendars';
+import {Agenda} from 'react-native-calendars';
 import { d } from "../../helper/utils/ScreenUtil";
 import { CalendarTabNavigationOptions } from "../../navigation/TabBarNavigationOptions";
 

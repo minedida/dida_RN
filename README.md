@@ -1,9 +1,10 @@
 # dida
+*This Project is WIP!!!*
 
 
 A Todo Application example writing Typescript for a strongly typed code and many others graceful library.
 
-This project show an elegant way to architect RN application using Typescript、Mobx、HOC、react hooks and implements ci/cd with travis-ci and fir.im
+This project show an elegant way to architect RN application using Typescript、Mobx、HOC、react hooks and implements ci/cd with github action and fir.im
 
 ### Tech Stack
 - [Typescript](https://www.typescriptlang.org/) typesafe code

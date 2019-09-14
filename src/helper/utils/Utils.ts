@@ -12,8 +12,19 @@ function isEmpty(arg: object | string | number | Array<any> | boolean) {
   return lodash.isEmpty(arg)
 }
 
+function getCmpName(cmp) {
+  // get injected component by mobx displayName or plain Component's name
+  let name = cmp.displayName || cmp.name
+  if (name.indexOf('inject') > -1) {
+    name = name.split('-')[1];
+    return name;
+  }
+  return name;
+}
+
 
 export {
   prettyLog,
-  isEmpty
+  isEmpty,
+  getCmpName
 }

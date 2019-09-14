@@ -7,7 +7,7 @@ import { DrawerStore } from "../../store/DrawerStore";
 import { TodoStore } from "../../store/TodoStore";
 import { translate } from "../../i18n";
 import TodoList from "../../components/todo/TodoList";
-import { toJS } from "mobx";
+import { openDrawer } from "../../navigation";
 
 const styles = StyleSheet.create({
   anchorView: {
@@ -29,6 +29,8 @@ const InboxTodoHeader = () => (
   </View>
 )
 
+// how to pass ref as props: https://stackoverflow.com/questions/37647061/how-do-i-access-refs-of-a-child-component-in-the-parent-component
+
 @inject('drawer', 'todo') @observer
 class InboxTodo extends React.Component<Props, any> {
   menu: RefObject<View>
@@ -38,11 +40,16 @@ class InboxTodo extends React.Component<Props, any> {
     this.onMenuPress = this.onMenuPress.bind(this)
     this.menu = React.createRef<View>();
   }
+  componentDidMount(): void {
+    Toast.show('InboxTodo')
+  }
 
   onMenuPress() {
     if (!isAndroid) {
       return
     }
+    // pop-up-dialog on android and actionsheet on ios
+    // https://github.com/Noitidart/react-native-popup-menu-android
     const node = findNodeHandle(this.menu.current) as any;
     const items = ['显示详细', '隐藏已完成', '排序', '分享', '编辑多个任务']
     UIManager.showPopupMenu(
@@ -62,13 +69,16 @@ class InboxTodo extends React.Component<Props, any> {
     return (
       <Icon
         largeTouchArea
-        onPress={this.props.drawer.toggleMenu}
+        // onPress={this.props.drawer.toggleMenu}
+        onPress={() => openDrawer()}
         size={isAndroid ? t(20) : t(20)}
         name={isAndroid ? 'md-menu' : 'ios-menu'}
         type={'Ionicons'} color={'#333'}/>
     )
   }
 
+  // how to pass ref as props:
+  // https://stackoverflow.com/questions/37647061/how-do-i-access-refs-of-a-child-component-in-the-parent-component
   renderRightBtn() {
     return (
       <View>
@@ -95,7 +105,7 @@ class InboxTodo extends React.Component<Props, any> {
         <NavigationBar title={translate('inbox')} leftButton={this.renderLeftBtn()}
                        rightButton={this.renderRightBtn()}/>
 
-        <TodoList data={toJS(todos)}
+        <TodoList data={todos}
                   renderHeader={() => <InboxTodoHeader/>}/>
       </View>
     )

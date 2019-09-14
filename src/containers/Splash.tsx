@@ -14,18 +14,18 @@ function Splash(props: Props) {
   }
 
   React.useEffect(() => {
-    Platform.OS === 'android' && SplashScreen.hide();
     let timmer;
     initPersist().then(() => {
+      goNext('App');
       timmer = setTimeout(() => {
-        goNext('App')
-      }, 200)
-    })
+        Platform.OS === 'android' && SplashScreen.hide();
+      }, 300)
+    });
     return () => {
       timmer && clearTimeout(timmer)
     }
-  })
-  return null
+  });
+  return <></>
 }
 
 export default Splash

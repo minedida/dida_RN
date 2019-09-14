@@ -146,7 +146,7 @@ class MailAuth extends React.Component<Props, State> {
   render() {
     return (
       <View style={{ flex: 1, backgroundColor: '#fff' }}>
-        <NavigationBar title={'邮箱账户'}/>
+        <NavigationBar title={'邮箱账户'} />
         <View style={{ flex: 1, flexDirection: 'row' }}>
           {this.renderCreateAccountView()}
           {this.renderLoginView()}

@@ -1,13 +1,14 @@
 import React from 'react'
 import { View, ScrollView, Text, Image, StyleSheet, TouchableNativeFeedback, Platform } from 'react-native'
 import { material } from 'react-native-typography'
-import { Space, Icon, NavigationBar, ButtonContainer } from "../../components";
+import { Space, Icon, NavigationBar, ButtonContainer, Toast } from "../../components";
 import { Images } from "../../assets";
 import { Divider } from "react-native-paper";
 import { d, t } from "../../helper/utils/ScreenUtil";
 import IoniconsIcon from 'react-native-vector-icons/Ionicons';
 import { inject, observer } from "mobx-react";
 import { DrawerStore } from "../../store/DrawerStore";
+import { openDrawer } from "../../navigation";
 
 const styles = StyleSheet.create({
   itemView: {
@@ -41,11 +42,16 @@ type Props = {
 class IconsPreview extends React.Component<Props> {
   scrollView: any
 
+  componentDidMount(): void {
+    Toast.show('IconsPreview')
+  }
+
   renderLeftBtn() {
     return (
       <ButtonContainer
         style={{ width: d(26), height: d(26), justifyContent: 'center', alignItems: 'center' }}
-        onPress={this.props.drawer.toggleMenu}
+        // onPress={this.props.drawer.toggleMenu}
+        onPress={() => openDrawer()}
         background={TouchableNativeFeedback.SelectableBackgroundBorderless()}>
         <IoniconsIcon
           size={isAndroid ? t(20): t(20)}

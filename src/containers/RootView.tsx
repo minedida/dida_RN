@@ -14,11 +14,7 @@ type Props = {
 @inject('app') @observer
 class RootView extends React.Component<Props> {
 
-  /*
-   * status: true -> fab展开了  false -> fab 收起了
-   */
   onFabPress(status) {
-    // 如果fab展开了，就让fab消失，input出现。如果fab收起了，让fab出现，input消失
     this.props.app!.setFabVisible(!status)
     this.props.app!.setFabOpen(status)
   }

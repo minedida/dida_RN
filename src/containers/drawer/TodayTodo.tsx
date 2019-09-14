@@ -5,6 +5,7 @@ import { material } from "react-native-typography";
 import { d, t } from "../../helper/utils/ScreenUtil";
 import { inject, observer } from "mobx-react";
 import { DrawerStore } from "../../store/DrawerStore";
+import { openDrawer } from "../../navigation";
 
 const isAndroid = Platform.OS === 'android'
 
@@ -18,7 +19,8 @@ class TodayTodo extends React.Component<Props> {
     return (
       <Icon
         largeTouchArea
-        onPress={this.props.drawer.toggleMenu}
+        // onPress={this.props.drawer.toggleMenu}
+        onPress={() => openDrawer()}
         type={'Ionicons'}
         size={isAndroid ? t(20): t(20)}
         style={{ width: d(26), height: d(26), justifyContent: 'center', alignItems: 'center' }}

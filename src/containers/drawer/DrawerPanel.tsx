@@ -1,31 +1,29 @@
 import React from 'react';
 import {
-  Dimensions,
   StyleSheet,
   ScrollView,
   View,
   Text,
-  Image, TouchableNativeFeedback
+  Image,
+  TouchableNativeFeedback
 } from 'react-native';
-import { inject, observer } from "mobx-react";
-import { DrawerItems, DrawerStore } from "../../store/DrawerStore";
-import { Drawer, withTheme, Theme } from 'react-native-paper';
-import { DeviceSize } from "../../helper/constant/DeviceConstants";
-import { d } from "../../helper/utils/ScreenUtil";
-import { material } from 'react-native-typography'
-import { ButtonContainer, Space, Icon } from "../../components";
-import { navigate } from "../../navigation";
 import color from 'color';
+import { inject, observer } from "mobx-react";
+import { NavigationScreenProp } from "react-navigation";
+import { material } from 'react-native-typography'
+import { Drawer, withTheme, Theme } from 'react-native-paper';
+import { ButtonContainer, Space, Icon } from "../../components";
+import { DeviceSize } from "../../helper/constant/DeviceConstants";
+import { DrawerItems, DrawerStore } from "../../store/DrawerStore";
+import { d } from "../../helper/utils/ScreenUtil";
+import { navigate } from "../../navigation";
 
 const { fake_status_bar_padding_for_ios, fake_status_bar_height_for_android } = DeviceSize
-const window = Dimensions.get('window');
 const uri = 'https://pickaface.net/gallery/avatar/Opi51c74d0125fd4.png';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    width: window.width * 0.86,
-    height: window.height,
     backgroundColor: '#fff',
   },
   statusBar: {
@@ -62,6 +60,7 @@ const styles = StyleSheet.create({
 type Props = {
   drawer?: DrawerStore
   theme: Theme
+  navigation?: NavigationScreenProp<any>
 }
 
 type ConfigItem = { label: string, icon: string, id: DrawerItems }
@@ -88,13 +87,11 @@ class DrawerPanel extends React.Component<Props> {
     this.onPress = this.onPress.bind(this)
   }
 
-  onPress(type: 'avatar' | 'btn' | 'setting') {
+  onPress(type: 'avatar' | 'auth' | 'setting') {
     this.props.drawer!.showDrawer = false
-    setTimeout(() => {
-      'avatar' === type && navigate('Auth')
-      'btn' === type && navigate('Auth')
-      'setting' === type && navigate('SettingTab', { 'from': 'drawer' })
-    }, 250)
+    'avatar' === type && navigate('Auth')
+    'auth' === type && navigate('Auth')
+    'setting' === type && navigate('SettingTab2', { 'from': 'drawer' })
   }
 
   renderTopView() {
@@ -127,7 +124,7 @@ class DrawerPanel extends React.Component<Props> {
           </View>
         </View>
         <ButtonContainer
-          onPress={() => this.onPress('btn')}
+          onPress={() => this.onPress('auth')}
           activeOpacity={0.6}
           style={[styles.btn, { backgroundColor: light_primary }]}>
           <Text style={[material.button, { color: '#fff' }]}>登录或注册</Text>
@@ -139,23 +136,25 @@ class DrawerPanel extends React.Component<Props> {
   renderDrawerItem() {
     const currentItem = this.props.drawer!.selectedItem
     return (
-      <View>
+      <>
         {
           configs.map((g, i) =>
             <Drawer.Section key={i}>
               {
                 g.map(v =>
-                  <Drawer.Item onPress={() => this.props.drawer!.onMenuItemSelected(v.id)}
-                               key={v.id} active={currentItem === v.id} {...v}/>)
+                  <Drawer.Item
+                    onPress={() => this.props.drawer!.onMenuItemSelected(v.id)}
+                    key={v.id} active={currentItem === v.id} {...v}/>)
               }
             </Drawer.Section>
           )
         }
-      </View>
+      </>
     )
   }
 
   render() {
+    console.log('DrawerPanel-this.props', this.props)
     const {
       theme: { colors: { primary } }
     } = this.props
