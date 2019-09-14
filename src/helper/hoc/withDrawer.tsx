@@ -4,14 +4,15 @@ import stores from "../../store";
 import DrawerPanel from "../../containers/drawer/DrawerPanel";
 
 export default function addDrawer(WrappedComponent: any) {
-  return class AddDrawerHOC extends React.Component {
+  return class extends React.Component {
     render() {
       const {
         drawer: {
           showDrawer,
           onMenuStateChange, disableGestures
-        } } = stores
-      const menu = <DrawerPanel/>
+        }
+      } = stores;
+      const menu = <DrawerPanel/>;
       return (
         <SideMenu
           disableGestures={disableGestures}

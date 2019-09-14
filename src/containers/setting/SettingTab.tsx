@@ -6,7 +6,7 @@ import { SettingTabNavigationOptions } from "../../navigation/TabBarNavigationOp
 import { navigate } from "../../navigation";
 import { d, t } from "../../helper/utils/ScreenUtil";
 import { SettingListItem, SettingListGroup, SettingHeader, SettingIcon, NavigationBar }
-from "../../components/";
+  from "../../components/";
 import { NavigationParams } from "react-navigation";
 import { Html } from "../../assets";
 
@@ -16,11 +16,11 @@ type ConfigItem = {
   leftIcon: React.ReactNode,
   rightView?: React.ReactNode,
 }
-const RightViewWithTheme= (props) =>
+const RightViewWithTheme = (props) =>
   <View style={{
     width: d(24),
     height: d(24),
-    backgroundColor: props.theme.colors.primary ,
+    backgroundColor: props.theme.colors.primary,
     borderRadius: d(24),
     alignSelf: 'center',
     marginRight: d(10)

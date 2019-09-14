@@ -25,6 +25,7 @@ import org.devio.rn.splashscreen.SplashScreenReactPackage;
 
 import java.util.Arrays;
 import java.util.List;
+import android.webkit.WebView;
 
 import ca.jaysoo.extradimensions.ExtraDimensionsPackage;
 import cl.json.RNSharePackage;
@@ -84,6 +85,9 @@ public class MainApplication extends Application implements ReactApplication, Sh
     public void onCreate() {
         super.onCreate();
         SoLoader.init(this, /* native exopackage */ false);
+
+        WebView.setWebContentsDebuggingEnabled(true);
+
     }
 
     @Override

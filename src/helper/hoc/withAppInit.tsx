@@ -19,6 +19,10 @@ export default function withAppInit(WrappedComponent: any) {
       checkUpdate()
       // 4.sentry
       SentryUtil.init()
+      // 5. reactotron
+      if(__DEV__) {
+        import('../enhance/ReactotronConfig').then(() => console.log('Reactotron Configured'))
+      }
 
       NetInfo.addEventListener("connectionChange", this.handleConnectionChange)
       RNLocalize.addEventListener("change", this.handleLocalizationChange);

@@ -8,7 +8,8 @@ import { Toast } from "../../components";
 
 export default function withBackHandler(WrappedComponent: any, params: 'Auth' | 'App') {
   return class extends React.Component {
-    static router = params === 'Auth' ? AuthStack.router : AppStack.router
+    // @ts-ignore
+    static router = params === 'Auth' ? AuthStack.router : AppStack.router;
 
     lastBackPressed: number = 0;
 
@@ -19,16 +20,20 @@ export default function withBackHandler(WrappedComponent: any, params: 'Auth' | 
 
     componentDidMount() {
       if (Platform.OS === 'android') {
-        BackHandler.addEventListener('hardwareBackPress', this.onBackAndroid);
+        // BackHandler.addEventListener('hardwareBackPress', this.onBackAndroid);
       }
     }
 
     componentWillUnmount() {
       if (Platform.OS === 'android') {
-        BackHandler.removeEventListener('hardwareBackPress', this.onBackAndroid);
+        // BackHandler.removeEventListener('hardwareBackPress', this.onBackAndroid);
       }
     }
 
+    /**
+     * false -> 交给系统处理，自己不处理。
+     * true -> 由自己处理，系统不要处理
+     */
     onBackAndroid(): boolean {
       const currentSwitch = getCurrentSwitchName();
 
@@ -41,10 +46,12 @@ export default function withBackHandler(WrappedComponent: any, params: 'Auth' | 
         if ('AppTabBar' !== currentSwitch) {
           return false
         }
+        // 处理抽屉的返回
         if (stores.drawer.showDrawer) {
           stores.drawer.toggleMenu()
           return true
         }
+        // 处理fabinput
         const fabInputWithBackButtonResult = this.handleFabInputWithBackButton()
         if (fabInputWithBackButtonResult) {
           return true
@@ -62,9 +69,11 @@ export default function withBackHandler(WrappedComponent: any, params: 'Auth' | 
       return true;
     }
 
+    // 处理fabinput
     handleFabInputWithBackButton(): boolean {
       if (stores.app.currentScreen === 'TodoTab' || stores.app.currentScreen === 'AppTabBar') {
         if (stores.app.fabOpen) {
+          // 恢复fab状态
           stores.app
           .setFabOpen(false)
           .setFabVisible(true)

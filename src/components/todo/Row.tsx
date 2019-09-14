@@ -3,7 +3,6 @@ import { View, Text, StyleSheet } from 'react-native'
 import { Space, Checkbox } from "../";
 import { d } from "../../helper/utils/ScreenUtil";
 import { material } from "react-native-typography";
-import { TodoStore } from "../../store/TodoStore";
 import { TodoModel } from "../../model";
 
 export const ITEM_HEIGHT = d(66)
@@ -37,7 +36,6 @@ type RowProps = {
   active: boolean
   index: number
   disabled: boolean
-  todo?: TodoStore
   onItemCheck: (id: number) => void
 }
 
@@ -79,3 +77,9 @@ export class Row extends React.Component<RowProps> {
 }
 
 export default Row
+
+/**
+ 这里的row有两种高度
+ 当正文显示一行时，高度 d(50)
+ 当正文显示两行时，高度 d(66)
+ **/

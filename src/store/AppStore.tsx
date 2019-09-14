@@ -7,7 +7,7 @@ import { theme } from "../theme";
 import { Toast } from "../components";
 import { AppTabBarModel } from "../model";
 import { translate } from "../i18n";
-
+import { getCmpName } from "../helper/utils/Utils";
 
 
 class AppStore {
@@ -16,18 +16,24 @@ class AppStore {
       const fabVisibleScreenArrays = ['TodoTab', 'CalendarTab', 'ClockinTab', 'SearchTab']
       this.fabVisible = fabVisibleScreenArrays.findIndex(v => v === change.newValue) > -1
     })
+    observe(this, 'appTabs', change => {
+      console.log('appTabs-change')
+      console.log(change)
+    })
   }
 
   @observable fabVisible: boolean = true
   @observable fabOpen: boolean = false
+
   @observable appTabs: Array<AppTabBarModel> = [
     { index: 0, cmp: TodoTab, show: true },
     { index: 1, cmp: CalendarTab, show: true },
-    { index: 2, cmp: TomatoTab, show: false },
-    { index: 3, cmp: ClockinTab, show: false },
-    { index: 4, cmp: SearchTab, show: false },
+    { index: 2, cmp: TomatoTab, show: true },
+    { index: 3, cmp: ClockinTab, show: true },
+    { index: 4, cmp: SearchTab, show: true },
     { index: 5, cmp: SettingTab, show: true }
   ]
+
   @persist('object')
   @observable appTheme: Theme = theme
   @observable currentScreen: string = ''
@@ -35,22 +41,37 @@ class AppStore {
   @observable languageTag: string = 'zh'
 
   @computed get tabMap(): { [index: string]: any } {
-    return this.appTabs.reduce((p, c) => {
+    const value = this.appTabs
+    .reduce((p, c) => {
       if (c.show) {
-        // get injected component by mobx displayName or plain Component's name
-        let name = c.cmp.displayName || c.cmp.name
-        console.log(`AppStore-reduce-name:\n:${JSON.stringify(name)}`)
-        if (name.indexOf('inject') > -1) {
-          name = name.split('-')[1];
-          p[name] = c.cmp;
-        } else {
-          // get a plain Component displayName
-          p[name] = c.cmp;
-        }
+        const name = getCmpName(c.cmp)
+        p[name] = c.cmp;
       }
       return p;
     }, {})
+    // console.log('AppStore-tabMap-value', value)
+    return value;
   }
+
+  @computed get tabRoutes() {
+    return this.appTabs
+    .filter(v => v.show)
+    .reduce((p: any, c) => {
+      const name = getCmpName(c.cmp)
+      p.push({
+        key: name,
+        routeName: name,
+        params: undefined,
+      })
+      return p;
+    }, [])
+  }
+
+  @observable tabMap2 = {
+    TodoMain: TodoTab,
+    CalendarMain: CalendarTab,
+    SettingMain: SettingTab,
+  } as any;
 
   @action.bound
   setCurrentScreen(currentScreen) {
@@ -83,6 +104,7 @@ class AppStore {
     return this
   }
 
+  // 修改Theme的primary color
   @action.bound
   changePrimaryColor(color: string) {
     this.appTheme = {

@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { NavigationParams, NavigationRoute, NavigationScreenProp } from "react-navigation";
 import stores from '../store'
 
@@ -7,14 +7,13 @@ import stores from '../store'
  * @param ScreenComponent Page component
  */
 const paramsToProps = (ScreenComponent: any) =>
-  class extends Component<any> {
-    static navigationOptions = ScreenComponent.navigationOptions
+  class extends ScreenComponent {
 
     render() {
       const { params } = this.props.navigation.state;
       return <ScreenComponent {...this.props} {...params} />
     }
-  }
+  };
 
 
 type NavigationPops =

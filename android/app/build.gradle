@@ -7,8 +7,9 @@ project.ext.react = [
 ]
 
 apply from: "../../node_modules/react-native/react.gradle"
+apply from: "../../node_modules/react-native-sentry/sentry.gradle"
 
-def enableSeparateBuildPerCPUArchitecture = false
+def enableSeparateBuildPerCPUArchitecture = true
 def cmd = 'git rev-list HEAD --count'
 def gitVersionCount = cmd.execute().text.trim().toInteger()
 
@@ -26,7 +27,7 @@ android {
         applicationId "com.dida.rn"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 2
+        versionCode gitVersionCount
         versionName "1.0.0"
         renderscriptSupportModeEnabled true
     }
@@ -58,7 +59,7 @@ android {
             reset()
             enable enableSeparateBuildPerCPUArchitecture
             universalApk false  // If true, also generate a universal APK
-            include "armeabi-v7a", "x86", "arm64-v8a", "x86_64"
+            include "armeabi-v7a"//, "x86", "arm64-v8a", "x86_64"
         }
     }
     applicationVariants.all { variant ->
