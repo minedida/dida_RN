@@ -12,6 +12,7 @@ export default function addDrawer(WrappedComponent: any) {
           onMenuStateChange, disableGestures
         }
       } = stores;
+      // @ts-ignore
       const menu = <DrawerPanel/>;
       return (
         <SideMenu

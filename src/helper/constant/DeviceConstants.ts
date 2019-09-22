@@ -1,7 +1,6 @@
 import ExtraDimensions from 'react-native-extra-dimensions-android';
 import DeviceInfo from 'react-native-device-info';
 import { Platform, Dimensions } from 'react-native'
-import { format } from 'date-fns'
 
 import { d, isIphoneX } from "../utils/ScreenUtil";
 
@@ -21,20 +20,16 @@ const DeviceSize = {
   fake_status_bar_padding_for_ios: isIOS ? ( isIphoneX() ? d(44) : d(20)) : 0,
 }
 
-
 const DeviceInfos = {
   buildNumber: DeviceInfo.getBuildNumber(),
   OS: Platform.OS,
   brand: DeviceInfo.getBrand(),
   deviceId: DeviceInfo.getDeviceId(),
   deviceName: DeviceInfo.getDeviceName(),
-  firstInstallTime: format(DeviceInfo.getFirstInstallTime(), 'YYYY-MM-DD HH:mm:ss'),
-  lastUpdateTime: format(DeviceInfo.getLastUpdateTime(), 'YYYY-MM-DD HH:mm:ss'),
   manufacturer: DeviceInfo.getManufacturer(),
   model: DeviceInfo.getModel(),
   version: DeviceInfo.getReadableVersion(),
   systemVersion: DeviceInfo.getSystemVersion(),
-  uniqueId: DeviceInfo.getUniqueID(),
   isEmulator: DeviceInfo.isEmulator()
 }
 

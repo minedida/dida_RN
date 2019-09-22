@@ -97,7 +97,6 @@ class AppleStyleSwipeableRow extends React.Component {
 
   render() {
     const { children } = this.props;
-    // 当条目为active时，禁用swipeable手势
     const gestureProps = { enabled: !stores.todo.todoItemSortableEnable } as any
     return (
       <NativeSwipeable
@@ -153,13 +152,6 @@ class JSSwipeableRow extends React.Component {
     );
   }
 }
-
-// export default (props) => {
-//   return <Row {...props} />;
-// }
-/*export default function (props: any) {
-  return <Row {...props}/>
-}*/
 
 
 

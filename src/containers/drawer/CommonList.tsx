@@ -9,6 +9,7 @@ class CommonList extends React.PureComponent<Props> {
     return (
       <View style={{ flex: 1, backgroundColor: '#fff' }}>
         <List.Item
+          delayPressIn={0}
           title="收集箱"
           left={props => <List.Icon {...props} icon="inbox" />}
         />
