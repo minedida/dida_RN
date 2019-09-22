@@ -42,6 +42,7 @@ type RowProps = {
 // SortableList-row
 export class Row extends React.Component<RowProps> {
 
+
   shouldComponentUpdate(nextProps: Readonly<RowProps>): boolean {
     console.log(`Row-render-shouldComponentUpdate`)
 
@@ -57,7 +58,6 @@ export class Row extends React.Component<RowProps> {
   render() {
     console.log(`Row-render`)
 
-    // todo 去除Checkbox的padding
     const { item, active } = this.props
     const checkboxStatus = item.checked ? 'checked' : 'unchecked'
     const shadowStyle = active ? styles.shadow : {};
@@ -77,9 +77,3 @@ export class Row extends React.Component<RowProps> {
 }
 
 export default Row
-
-/**
- 这里的row有两种高度
- 当正文显示一行时，高度 d(50)
- 当正文显示两行时，高度 d(66)
- **/

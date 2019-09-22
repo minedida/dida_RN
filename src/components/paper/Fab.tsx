@@ -7,7 +7,6 @@ interface IFABGroupProps extends FABGroupProps {
   theme: Theme
 }
 
-// 将FAB的主题色由原本paper自带的`accent`改为`primary`
 
 const FabGroup = withTheme(
   (props: IFABGroupProps) =>

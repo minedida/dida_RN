@@ -8,7 +8,6 @@ export default createStackNavigator(
     MailAuth,
   },
   {
-    // initialRouteName: 'MailAuth',
     headerMode: 'none',
     cardStyle: {
       shadowColor: 'transparent',

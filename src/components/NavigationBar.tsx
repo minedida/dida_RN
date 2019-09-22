@@ -15,12 +15,14 @@ import { d, t } from "../helper/utils/ScreenUtil";
 import { DeviceSize } from "../helper/constant/DeviceConstants";
 
 const isAndroid = Platform.OS === 'android'
+const P_Version = isAndroid && Platform.Version >= 28;
 
 const NAV_BAR_HEIGHT_IOS = d(44)
 const NAV_BAR_HEIGHT_ANDROID = d(50)
 
 const {
-  status_bar_height, fake_status_bar_padding_for_ios,
+  status_bar_height,
+  fake_status_bar_padding_for_ios,
   fake_status_bar_height_for_android
 } = DeviceSize
 
@@ -54,6 +56,11 @@ const styles = StyleSheet.create({
   shadow: {
     elevation: 4,
     zIndex: 1
+  },
+  fakeHolder: {
+    height: fake_status_bar_height_for_android,
+    width: '100%',
+    paddingTop: fake_status_bar_padding_for_ios
   },
   navBar: {
     flex: 1,
@@ -140,9 +147,12 @@ class NavigationBar extends PureComponent<Props> {
 
   render() {
     const {
-      title, navBarBackgroundColor,
-      rightButton, leftButton,
-      statusBarStyle, statusBarHidden,
+      title,
+      navBarBackgroundColor,
+      rightButton,
+      leftButton,
+      statusBarStyle,
+      statusBarHidden,
       elevation
     } = this.props
     const content = (
@@ -154,18 +164,12 @@ class NavigationBar extends PureComponent<Props> {
         {this.getRightButton(rightButton)}
       </View>
     )
-    const elevation_android = elevation ? { elevation: 4, zIndex: 1 } : {}
+    const elevation_android = elevation ? { elevation: P_Version ? 4 : 2, zIndex: 1 } : {}
 
     return (
-      <View style={[styles.container, elevation_android,
-        { backgroundColor: navBarBackgroundColor, }, this.props.style]}>
-        <StatusBar barStyle={statusBarStyle} backgroundColor="transparent" translucent
-                   animated={true} hidden={statusBarHidden}/>
-        <View style={{
-          height: fake_status_bar_height_for_android,
-          width: '100%',
-          paddingTop: fake_status_bar_padding_for_ios
-        }}/>
+      <View style={[styles.container, elevation_android, { backgroundColor: navBarBackgroundColor }, this.props.style]}>
+        <StatusBar barStyle={statusBarStyle} backgroundColor="transparent" translucent animated hidden={statusBarHidden}/>
+        <View style={styles.fakeHolder} />
         {content}
       </View>
     )

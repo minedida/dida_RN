@@ -131,7 +131,8 @@ export default class SortableList extends Component {
     }
   }
 
-  componentDidUpdate(prevProps, prevState) {
+
+  UNSAFE_componentWillUpdate(prevProps, prevState) {
     const {data} = this.state;
     const {data: prevData} = prevState;
 

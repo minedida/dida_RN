@@ -45,7 +45,7 @@ class AgendaList extends Component {
     return i;
   }
 
-  componentDidUpdate(prevProps) {
+  UNSAFE_componentWillUpdate(prevProps) {
     const {updateSource, date} = this.props.context;
     if (date !== prevProps.context.date) {
       // NOTE: on first init data should set first section to the current date!!!
@@ -112,7 +112,7 @@ class AgendaList extends Component {
     const date = XDate(title).toString(this.props.dayFormat).toUpperCase();
     const todayString = XDate.locales[XDate.defaultLocale].today || commons.todayString;
     const sectionTitle = date === today ? `${todayString.toUpperCase()}, ${date}` : date;
-    
+
     return (
       <Text style={[this.style.sectionText, this.props.sectionStyle]} onLayout={this.onLayout}>{sectionTitle}</Text>
     );

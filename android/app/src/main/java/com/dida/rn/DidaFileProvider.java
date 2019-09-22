@@ -3,7 +3,7 @@ package com.dida.rn;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.net.Uri;
-import android.support.v4.content.FileProvider;
+import androidx.core.content.FileProvider;
 
 public class DidaFileProvider extends FileProvider {
     public DidaFileProvider() { }

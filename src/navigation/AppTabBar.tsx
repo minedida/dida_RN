@@ -23,9 +23,8 @@ const tabBarOptions = {
       },
       android: {
         backgroundColor: '#fff',
-        // 去除bottom-tab的那条线，替换成阴影
         borderTopWidth: 0,
-        elevation: 8,
+        elevation: 14,
       }
     }),
   },

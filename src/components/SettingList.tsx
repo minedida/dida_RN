@@ -56,7 +56,6 @@ class SettingListItem extends React.PureComponent<Props> {
     return (
       <List.Item
         delayPressIn={0}
-        // rippleColor={"rgba(0, 0, 0, .12)"}
         onPress={() => onPress(id)}
         style={{ height: itemHeight, alignItems: 'center', justifyContent: 'center', flexDirection: 'row' }}
         title={title}

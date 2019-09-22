@@ -9,7 +9,6 @@ export const IconTypeArrays = [
 ]
 
 export type ValuesOf<T extends string[]>= T[number];
-// export type IconTypes = ValuesOf<typeof IconTypeArrays>;
 export type IconTypes = typeof IconTypeArrays;
 
 export default type => {

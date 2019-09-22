@@ -3,13 +3,13 @@ import App from './src/App';
 import {name as appName} from './app.json';
 
 if (!__DEV__) {
-  global.console = {
-    info: () => {},
-    log: () => {},
-    warn: () => {},
-    debug: () => {},
-    error: () => {}
-  }
+  // global.console = {
+  //   info: () => {},
+  //   log: () => {},
+  //   warn: () => {},
+  //   debug: () => {},
+  //   error: () => {}
+  // }
 }
 
 const ignores = [

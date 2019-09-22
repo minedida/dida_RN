@@ -8,11 +8,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
-import android.support.v4.app.NotificationCompat.Builder;
-import android.support.v4.content.FileProvider;
+import androidx.core.app.NotificationCompat.Builder;
+import androidx.core.content.FileProvider;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.dida.rn.BuildConfig;
 import com.dida.rn.MainActivity;
 import com.dida.rn.R;
 
@@ -141,7 +142,7 @@ public class DownloadService extends IntentService {
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-            String authority = "com.dida.rn.file.provider";
+            String authority = BuildConfig.APPLICATION_ID + "provider";
             Uri apkUri = FileProvider.getUriForFile(this, authority, apkFile);
             intent.setDataAndType(apkUri, "application/vnd.android.package-archive");
         } else {

@@ -32,7 +32,6 @@ const Icon = (props: IconProps) => {
     size,
     color,
     onPress,
-    // style = { height: '100%', width: '100%' },
     style,
     scale = 1.2,
     hitSlop = {},

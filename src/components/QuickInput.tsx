@@ -59,7 +59,6 @@ const InputIcon = (props: any) =>
   <Icon style={styles.iconView} color={'#787878'} size={t(22)} scale={1.8} {...props}/>
 
 
-//todo contentView 在y轴方向上的动画
 @inject('app', 'todo') @observer
 class QuickInput extends React.Component<Props, any> {
   textInputRef: any
@@ -69,11 +68,8 @@ class QuickInput extends React.Component<Props, any> {
 
   onToolItemPress(type: string) {
     if (type === 'send') {
-      // 1.添加todo到store中
       this.props.todo!.addTodo(this.state.inputTxt)
-      // 2.清空state
       this.setState({ inputTxt: '' })
-      // 3.恢复fab状态
       this.props.app!
         .setFabOpen(false)
         .setFabVisible(true)
@@ -120,7 +116,6 @@ class QuickInput extends React.Component<Props, any> {
   }
 
   renderTextView() {
-    // todo: 同步textinput的光标颜色
     return (
       <View style={styles.inputContainer}>
         <AutoGrowingTextInput

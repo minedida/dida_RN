@@ -55,7 +55,7 @@ class Tips extends React.PureComponent<Props> {
     click: false
   }
 
-  componentWillUpdate = () => LayoutAnimation.easeInEaseOut()
+  UNSAFE_componentWillUpdate = () => LayoutAnimation.easeInEaseOut()
 
   render() {
     const {
