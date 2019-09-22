@@ -6524,10 +6524,9 @@ react-native-animatable@^1.3.1:
   dependencies:
     prop-types "^15.5.10"
 
-react-native-autogrow-textinput@^5.2.0:
+react-native-autogrow-textinput@pokemon-corps/react-native-autogrow-textinput#master:
   version "5.2.0"
-  resolved "https://registry.npm.taobao.org/react-native-autogrow-textinput/download/react-native-autogrow-textinput-5.2.0.tgz#acf736454781f5beaba8b7d9c943b7333691b65e"
-  integrity sha1-rPc2RUeB9b6rqLfZyUO3MzaRtl4=
+  resolved "https://codeload.github.com/pokemon-corps/react-native-autogrow-textinput/tar.gz/14655a00cb5d8f01dce375a7ec90606b5b9d3263"
 
 react-native-calendars@1.185.0:
   version "1.185.0"
@@ -6586,10 +6585,9 @@ react-native-gesture-handler@^1.4.1:
     invariant "^2.2.4"
     prop-types "^15.7.2"
 
-react-native-keyboard-input@^5.3.1:
+react-native-keyboard-input@pokemon-corps/react-native-keyboard-input#master:
   version "5.3.1"
-  resolved "https://registry.npm.taobao.org/react-native-keyboard-input/download/react-native-keyboard-input-5.3.1.tgz#e90f43e17c070535cb54cc0be66a247f177474fc"
-  integrity sha1-6Q9D4XwHBTXLVMwL5mokfxd0dPw=
+  resolved "https://codeload.github.com/pokemon-corps/react-native-keyboard-input/tar.gz/f2b5886a6f05cdcad253e30d76c1e34b4d0b7ad1"
   dependencies:
     lodash "^4.17.4"
     react-native-keyboard-tracking-view "^5.5.0"
