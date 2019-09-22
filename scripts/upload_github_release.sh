@@ -5,7 +5,7 @@
 # Get GITHUB_TOKEN
 
 GITHUB_TOKEN="5bdd4a2d1ae14d03b784a2ab580c02f225f80dd8"
-PACKAGE_PATH="../android/app/build/outputs/apk/release/app-armeabi-v7a-release.apk"
+PACKAGE_PATH="android/app/build/outputs/apk/release/app-armeabi-v7a-release.apk"
 REPO="dida_RN"
 
 

@@ -4,7 +4,7 @@
 # Get API Token from http://fir.im/apps
 
 API_TOKEN="4d4de4401439f954a183fbc0383e8353"
-PACKAGE_PATH="../android/app/build/outputs/apk/release/app-armeabi-v7a-release.apk"
+PACKAGE_PATH="android/app/build/outputs/apk/release/app-armeabi-v7a-release.apk"
 # ios or android
 TYPE="android"
 # App 的 bundleId
