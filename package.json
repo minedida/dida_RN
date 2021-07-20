@@ -37,7 +37,7 @@
     "prop-types": "^15.7.2",
     "react": "16.8.6",
     "react-dom": "^16.8.6",
-    "react-native": "0.60.5",
+    "react-native": "0.62.3",
     "react-native-calendars": "1.185.0",
     "react-native-cli": "^2.0.1",
     "react-native-date-picker": "^2.7.0",
