@@ -33,7 +33,7 @@
     "mobx": "4.5.1",
     "mobx-persist": "^0.4.1",
     "mobx-react": "5.4.2",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "prop-types": "^15.7.2",
     "react": "16.8.6",
     "react-dom": "^16.8.6",
